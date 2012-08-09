@@ -12,6 +12,8 @@ It will be useless to use this decorator if:
     -The function is never called with the same in-data multiple times
     OR
     -The function is computationally virtually cost-free (i.e. ~O(1)).
+    OR
+    -The data to be cached consumes too much space
 
 The time saved by using this is at the expense of space,
 as each in-data : return-value pair is stored in a dictionary.
@@ -20,8 +22,6 @@ __author__ = "Johannes Bjerva"
 __version__ = "1.0.0"
 __email__ = "johannesbjerva@gmail.com"
 __status__ = "Fully functional"
-
-import functools
 
 class FuncCache(object):
     def __init__(self, function):
@@ -42,7 +42,7 @@ class FuncCache(object):
             self.cache[args] = value        #Cache it
             return value
         except TypeError:
-            #Uncachable, i.e. if argument is list (can't be key)
+            #Uncachable, i.e. if argument is list (can't be key in dict)
             #TODO: Convert to tuple?
             return self.function(*args) #Return without caching
     
