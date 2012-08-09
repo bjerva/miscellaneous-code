@@ -1,6 +1,5 @@
-# create a synthetic 'sine wave' wave file with
-# set frequency and length
-# tested with Python 2.5.4 and Python 3.1.1 by vegaseat
+# Create wave-files containing sine-wave pulses
+# Adapted from a script created by 'vegaseat'.
  
 import math
 import wave
